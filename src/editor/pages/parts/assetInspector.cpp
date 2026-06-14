@@ -100,12 +100,15 @@ void Editor::AssetInspector::draw() {
 
     if (asset->type != FileType::AUDIO && asset->type != FileType::MUSIC_XM)
     {
-      ImTable::addComboBox("Compression", (int&)asset->conf.compression, {
+      int compression = (int)asset->conf.compression;
+      if(ImTable::addComboBox("Compression", compression, {
         "Project Default", "None",
         "Level 1 - Fast",
         "Level 2 - Good",
         "Level 3 - High",
-      });
+      })) {
+        asset->conf.compression = (Project::ComprTypes)compression;
+      }
     }
 
     ImTable::addCheckBox("Exclude", asset->conf.exclude);

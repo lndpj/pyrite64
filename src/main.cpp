@@ -298,7 +298,7 @@ int main(int argc, char** argv)
 
     // Main loop
     bool done = false;
-    float lastPinch;
+    float lastPinch = 1.0f;
     while(!done) {
 
       auto frameStart = SDL_GetTicksNS();

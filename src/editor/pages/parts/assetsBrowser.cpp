@@ -79,7 +79,7 @@ void Editor::AssetsBrowser::draw() {
   };
 
   ImGui::BeginChild("LEFT", ImVec2(94_px, 0), ImGuiChildFlags_Borders);
-  for (int i=0; i<TABS.size(); ++i) {
+  for (int i=0; i<(int)TABS.size(); ++i) {
     bool isActive = i == activeTab;
     if (ImGui::Selectable(TABS[i].name, isActive))activeTab = i;
   }

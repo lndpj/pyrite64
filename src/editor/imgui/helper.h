@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cctype>
 #include <cstring>
+#include <utility>
 #include <string>
 #include <unordered_map>
 #include "imgui.h"
@@ -91,7 +92,7 @@ namespace ImGui
   ) {
     int idx = 0;
     for (const auto &item : items) {
-      if (id == item.getId())break;
+      if (std::cmp_equal(id, item.getId()))break;
       ++idx;
     }
     auto getter = [](void* itemsLocal, int idx)
@@ -479,7 +480,7 @@ namespace ImTable
     if(disabled)ImGui::BeginDisabled();
     int idx = 0;
     for (const auto &item : items) {
-      if (id == item.getId())break;
+      if (std::cmp_equal(id, item.getId()))break;
       ++idx;
     }
     const char* preview = "<None>";

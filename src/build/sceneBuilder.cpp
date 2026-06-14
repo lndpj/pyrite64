@@ -57,7 +57,7 @@ uint32_t Build::writeObject(Build::SceneCtx &ctx, Project::Object &obj, bool sav
     ctx.fileObj.skip(2);
     ctx.fileObj.skip(2); // flags (@TODO)
 
-    if (comp.id >= 0 && comp.id < Project::Component::TABLE.size()) {
+    if (comp.id >= 0 && comp.id < (int)Project::Component::TABLE.size()) {
       Project::Component::TABLE[comp.id].funcBuild(obj, comp, ctx);
     } else {
       Utils::Logger::log("Component ID not found: " + std::to_string(comp.id), Utils::Logger::LEVEL_ERROR);
@@ -124,7 +124,6 @@ void Build::buildScene(Project::Project &project, const Project::SceneEntry &sce
   auto fsDataPath = fs::absolute(fs::path{project.getPath()} / "filesystem" / "p64");
 
   uint32_t sceneFlags = 0;
-  uint32_t objCountExpected = sc->objectsMap.size();
   uint32_t objCount = 0;
 
   if (sc->conf.doClearDepth.value)sceneFlags |= FLAG_CLR_DEPTH;

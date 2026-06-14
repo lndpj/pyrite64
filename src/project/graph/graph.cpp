@@ -107,7 +107,7 @@ namespace Project::Graph
     for(auto &node : data["nodes"]) {
       if(!node.contains("objRefSlot"))continue;
       out.push_back({
-        .slot = node.value("objRefSlot", 0),
+        .slot = node.value<uint16_t>("objRefSlot", 0),
         .name = node.value("objRefName", std::string{"Object"}),
       });
     }
